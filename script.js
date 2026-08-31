@@ -1,8 +1,19 @@
-// Your Formspree link is integrated here:
 const formspreeLink = "https://formspree.io/f/moeqjwoe"; 
 
 let spoilChoice = "";
 let giftChoice = "";
+let noClickCount = 0;
+
+// Funny phrases for the running "No" button
+const noMessages = [
+    "No",
+    "Are you sure? 😢",
+    "Think again! 🧐",
+    "Wrong button! 😂",
+    "Nice try! 🏃‍♀️",
+    "Pretty please? 🥺",
+    "You can't catch me!"
+];
 
 // Function to switch screens smoothly
 function nextScreen(screenNumber) {
@@ -12,20 +23,37 @@ function nextScreen(screenNumber) {
     document.getElementById(`screen-${screenNumber}`).classList.add('active');
 }
 
+// Triggered when she clicks "Yes" on Screen 2
+function triggerYes() {
+    // Launch confetti celebration!
+    confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 }
+    });
+    nextScreen(3);
+}
+
 // Function to record how she wants to be spoiled
 function chooseSpoil(choice) {
     spoilChoice = choice;
-    nextScreen(5); // Go to the flowers question
+    nextScreen(5); 
 }
 
-// Function to record the gift and send the email!
+// Function to record the gift, trigger final confetti, and send form data
 function chooseGift(choice) {
     giftChoice = choice;
     
-    // Show the final screen immediately so she doesn't have to wait
+    // Launch grand finale confetti celebration!
+    confetti({
+        particleCount: 150,
+        spread: 100,
+        origin: { y: 0.5 }
+    });
+
     nextScreen(6);
 
-    // Send the data quietly in the background to Formspree
+    // Send choices quietly to Formspree
     fetch(formspreeLink, {
         method: 'POST',
         headers: {
@@ -40,12 +68,15 @@ function chooseGift(choice) {
     }).catch(error => console.log("Error sending data"));
 }
 
-// Function to make the "No" button run away randomly when hovered or clicked
+// Function to make the "No" button run away and change text
 function moveButton() {
     const noBtn = document.getElementById('no-btn');
     
-    const randomX = Math.floor(Math.random() * 200) - 100;
-    const randomY = Math.floor(Math.random() * 100) - 50;
+    noClickCount = (noClickCount + 1) % noMessages.length;
+    noBtn.innerText = noMessages[noClickCount];
+
+    const randomX = Math.floor(Math.random() * 220) - 110;
+    const randomY = Math.floor(Math.random() * 120) - 60;
 
     noBtn.style.position = 'relative';
     noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
