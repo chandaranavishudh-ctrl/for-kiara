@@ -123,17 +123,6 @@ h1 {
     margin-bottom: 25px;
 }
 
-/* Emojis */
-.emoji-header {
-    font-size: 3rem;
-    margin-bottom: 10px;
-}
-
-.emoji-footer {
-    font-size: 3rem;
-    margin-top: 20px;
-}
-
 /* Buttons */
 .pink-btn {
     background-color: #ff6b6b;
@@ -212,4 +201,17 @@ h1 {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+/* Custom Graphic Header Style */
+.graphic-header {
+    width: 90px;
+    height: 90px;
+    margin: 0 auto 10px auto;
+}
+
+.graphic-header img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
