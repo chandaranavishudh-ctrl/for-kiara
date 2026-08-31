@@ -1,84 +1,215 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Will you go out with me? 💖</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
-</head>
-<body>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Quicksand', sans-serif;
+}
 
-    <div class="hearts-container" id="hearts-container"></div>
+body {
+    /* Live Shifting Gradient Background Animation */
+    background: linear-gradient(-45deg, #fae1dd, #ffcad4, #f8edeb, #ffd1d6);
+    background-size: 400% 400%;
+    animation: gradientBG 12s ease infinite;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
 
-    <div class="ribbon top-left">🎀</div>
-    <div class="ribbon top-right">🎀</div>
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
 
-    <div class="bouquet bottom-left">💐</div>
-    <div class="bouquet bottom-right">💐</div>
+/* Floating Hearts Background Animation */
+.hearts-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+    pointer-events: none;
+}
 
-    <div class="card">
+.heart {
+    position: absolute;
+    bottom: -20px;
+    font-size: 1.5rem;
+    color: #ff6b6b;
+    opacity: 0.6;
+    animation: floatUp 6s linear infinite;
+}
 
-        <div id="screen-1" class="screen active">
-            <div class="emoji-header">💌</div>
-            <h1>Hey! Let's just skip the small talk 🌸</h1>
-            <p class="subtitle">I want to take you out ✨</p>
-            <button class="pink-btn" onclick="nextScreen(2)">Lets do this</button>
-            <div class="emoji-footer">🧸</div>
-        </div>
+@keyframes floatUp {
+    0% { transform: translateY(0) scale(0.8); opacity: 0.8; }
+    100% { transform: translateY(-105vh) scale(1.2); opacity: 0; }
+}
 
-        <div id="screen-2" class="screen">
-            <div class="emoji-header">🐰</div>
-            <h1>Will you go out with me? 🥺</h1>
-            <p class="subtitle">Take your time, but remember there is only one correct answer...</p>
-            <div class="btn-group">
-                <button class="pink-btn" onclick="nextScreen(3)">Yes</button>
-                <button id="no-btn" class="pink-btn" onmouseover="moveButton()" onclick="moveButton()">No</button>
-            </div>
-        </div>
+/* Corner Ribbons & Bouquets */
+.ribbon {
+    position: absolute;
+    top: 25px;
+    font-size: 3rem;
+    z-index: 3;
+    pointer-events: none;
+}
+.top-left { left: 35px; transform: rotate(-15deg); }
+.top-right { right: 35px; transform: scaleX(-1) rotate(-15deg); }
 
-        <div id="screen-3" class="screen">
-            <div class="emoji-header">🐰</div>
-            <h1>I knew you would say yes!! 😎</h1>
-            <div class="image-frame">
-                <img src="joe.jpg" alt="Joe Goldberg" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400'">
-            </div>
-            <button class="pink-btn" onclick="nextScreen(4)">Continue</button>
-        </div>
+.bouquet {
+    position: absolute;
+    bottom: 20px;
+    font-size: 4.5rem;
+    z-index: 3;
+    pointer-events: none;
+}
+.bottom-left { left: 30px; }
+.bottom-right { right: 30px; transform: scaleX(-1); }
 
-        <div id="screen-4" class="screen">
-            <div class="emoji-header">🐰</div>
-            <h1>How exactly do you want to be spoiled?</h1>
-            <div class="vertical-btns">
-                <button class="pink-btn" onclick="chooseSpoil('Movie')">Movie</button>
-                <button class="pink-btn" onclick="chooseSpoil('Coffee')">Coffee</button>
-                <button class="pink-btn" onclick="chooseSpoil('Ice cream')">Ice cream</button>
-                <button class="pink-btn" onclick="chooseSpoil('Bowling')">Bowling</button>
-            </div>
-        </div>
+/* Central Card Layout */
+.card {
+    position: relative;
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.82);
+    backdrop-filter: blur(10px);
+    border: 3px solid #ffcad4;
+    border-radius: 25px;
+    padding: 40px 30px;
+    width: 90%;
+    max-width: 580px;
+    min-height: 440px;
+    box-shadow: 0 15px 35px rgba(255, 154, 162, 0.35);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-        <div id="screen-5" class="screen">
-            <div class="emoji-header">🐰</div>
-            <h1>Important: What am I supposed to show up with?</h1>
-            <p class="subtitle">Just so I can make sure you actually have a good time :</p>
-            <div class="grid-btns">
-                <button class="pink-btn" onclick="chooseGift('Roses 🌹')">Roses 🌹</button>
-                <button class="pink-btn" onclick="chooseGift('Sunflowers 🌻')">Sunflowers 🌻</button>
-                <button class="pink-btn" onclick="chooseGift('Tulips or Lilies 🌷')">Tulips or Lilies 🌷</button>
-                <button class="pink-btn" onclick="chooseGift('Chocolates 🍫')">chocolates 🍫</button>
-            </div>
-        </div>
+/* Screen Management with Fade Animation */
+.screen {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    animation: fadeIn 0.4s ease-in-out;
+}
 
-        <div id="screen-6" class="screen">
-            <div class="emoji-header">✨</div>
-            <h1>See you then. 💖</h1>
-            <div class="image-frame">
-                <img src="67.jpg" alt="Final Rose" onerror="this.src='https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=400'">
-            </div>
-        </div>
+.screen.active {
+    display: flex;
+}
 
-    </div>
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.97); }
+    to { opacity: 1; transform: scale(1); }
+}
 
-    <script src="script.js"></script>
-</body>
-</html>
+/* Typography */
+h1 {
+    color: #4a3535;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.subtitle {
+    color: #6e5555;
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 25px;
+}
+
+/* Emojis */
+.emoji-header {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.emoji-footer {
+    font-size: 3rem;
+    margin-top: 20px;
+}
+
+/* Buttons */
+.pink-btn {
+    background-color: #ff6b6b;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 12px 38px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(255, 107, 107, 0.4);
+    transition: transform 0.1s ease, background-color 0.2s;
+    outline: none;
+}
+
+.pink-btn:hover {
+    background-color: #fa5252;
+    transform: scale(1.05);
+}
+
+.btn-group {
+    display: flex;
+    gap: 20px;
+    position: relative;
+    margin-top: 10px;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    width: 100%;
+}
+
+#no-btn {
+    position: relative;
+    transition: 0.1s ease-out;
+}
+
+.vertical-btns {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 260px;
+    margin-top: 5px;
+}
+
+.vertical-btns .pink-btn {
+    width: 100%;
+}
+
+.grid-btns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    width: 100%;
+    max-width: 440px;
+    margin-top: 5px;
+}
+
+.grid-btns .pink-btn {
+    width: 100%;
+    padding: 12px 10px;
+    font-size: 0.95rem;
+}
+
+/* Image Frames */
+.image-frame {
+    width: 200px;
+    height: 200px;
+    border: 4px solid #ff6b6b;
+    border-radius: 15px;
+    overflow: hidden;
+    margin: 10px auto 20px auto;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.image-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
