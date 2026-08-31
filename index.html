@@ -9,21 +9,16 @@
 </head>
 <body>
 
-    <!-- Floating Background Hearts Container -->
     <div class="hearts-container" id="hearts-container"></div>
 
-    <!-- Top Ribbon Decorations -->
     <div class="ribbon top-left">🎀</div>
     <div class="ribbon top-right">🎀</div>
 
-    <!-- Bottom Bouquet Decorations -->
     <div class="bouquet bottom-left">💐</div>
     <div class="bouquet bottom-right">💐</div>
 
-    <!-- MAIN CONTAINER CARD -->
     <div class="card">
 
-        <!-- SCREEN 1: Intro -->
         <div id="screen-1" class="screen active">
             <div class="emoji-header">💌</div>
             <h1>Hey! Let's just skip the small talk 🌸</h1>
@@ -32,7 +27,6 @@
             <div class="emoji-footer">🧸</div>
         </div>
 
-        <!-- SCREEN 2: The Question -->
         <div id="screen-2" class="screen">
             <div class="emoji-header">🐰</div>
             <h1>Will you go out with me? 🥺</h1>
@@ -43,43 +37,38 @@
             </div>
         </div>
 
-        <!-- SCREEN 3: Joe Reaction -->
         <div id="screen-3" class="screen">
             <div class="emoji-header">🐰</div>
             <h1>I knew you would say yes!! 😎</h1>
             <div class="image-frame">
-                <!-- Make sure your joe.jpg file is in the folder -->
                 <img src="joe.jpg" alt="Joe Goldberg" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400'">
             </div>
             <button class="pink-btn" onclick="nextScreen(4)">Continue</button>
         </div>
 
-        <!-- SCREEN 4: Spoiled Options -->
         <div id="screen-4" class="screen">
             <div class="emoji-header">🐰</div>
             <h1>How exactly do you want to be spoiled?</h1>
             <div class="vertical-btns">
-                <button class="pink-btn" onclick="nextScreen(5)">Movie</button>
-                <button class="pink-btn" onclick="nextScreen(5)">Coffee</button>
-                <button class="pink-btn" onclick="nextScreen(5)">Ice cream</button>
-                <button class="pink-btn" onclick="nextScreen(5)">Bowling</button>
+                <button class="pink-btn" onclick="chooseSpoil('Movie')">Movie</button>
+                <button class="pink-btn" onclick="chooseSpoil('Coffee')">Coffee</button>
+                <button class="pink-btn" onclick="chooseSpoil('Ice cream')">Ice cream</button>
+                <button class="pink-btn" onclick="chooseSpoil('Bowling')">Bowling</button>
             </div>
         </div>
 
-        <!-- SCREEN 5: Flowers / Chocolate Options -->
         <div id="screen-5" class="screen">
             <div class="emoji-header">🐰</div>
             <h1>Important: What am I supposed to show up with?</h1>
             <p class="subtitle">Just so I can make sure you actually have a good time :</p>
             <div class="grid-btns">
-                <button class="pink-btn" onclick="nextScreen(6)">Roses 🌹</button>
-                <button class="pink-btn" onclick="nextScreen(6)">Sunflowers 🌻</button>
-                <button class="pink-btn" onclick="nextScreen(6)">Tulips or Lilies 🌷</button>
-                <button class="pink-btn" onclick="nextScreen(6)">chocolates 🍫</button>
+                <button class="pink-btn" onclick="chooseGift('Roses 🌹')">Roses 🌹</button>
+                <button class="pink-btn" onclick="chooseGift('Sunflowers 🌻')">Sunflowers 🌻</button>
+                <button class="pink-btn" onclick="chooseGift('Tulips or Lilies 🌷')">Tulips or Lilies 🌷</button>
+                <button class="pink-btn" onclick="chooseGift('Chocolates 🍫')">chocolates 🍫</button>
             </div>
         </div>
 
-        <!-- SCREEN 6: Final Outro -->
         <div id="screen-6" class="screen">
             <div class="emoji-header">✨</div>
             <h1>See you then. 💖</h1>
