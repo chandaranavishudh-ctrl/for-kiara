@@ -25,12 +25,14 @@ function nextScreen(screenNumber) {
 
 // Triggered when she clicks "Yes" on Screen 2
 function triggerYes() {
-    // Launch confetti celebration!
-    confetti({
-        particleCount: 100,
-        spread: 70,
-        origin: { y: 0.6 }
-    });
+    // Launch confetti celebration safely
+    if (typeof confetti === 'function') {
+        confetti({
+            particleCount: 100,
+            spread: 70,
+            origin: { y: 0.6 }
+        });
+    }
     nextScreen(3);
 }
 
@@ -44,12 +46,14 @@ function chooseSpoil(choice) {
 function chooseGift(choice) {
     giftChoice = choice;
     
-    // Launch grand finale confetti celebration!
-    confetti({
-        particleCount: 150,
-        spread: 100,
-        origin: { y: 0.5 }
-    });
+    // Launch grand finale confetti celebration safely
+    if (typeof confetti === 'function') {
+        confetti({
+            particleCount: 150,
+            spread: 100,
+            origin: { y: 0.5 }
+        });
+    }
 
     nextScreen(6);
 
@@ -71,6 +75,7 @@ function chooseGift(choice) {
 // Function to make the "No" button run away and change text
 function moveButton() {
     const noBtn = document.getElementById('no-btn');
+    if (!noBtn) return;
     
     noClickCount = (noClickCount + 1) % noMessages.length;
     noBtn.innerText = noMessages[noClickCount];
