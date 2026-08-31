@@ -1,109 +1,96 @@
-const formspreeLink = "https://formspree.io/f/moeqjwoe"; 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will you go out with me? 💖</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
+    <!-- Include Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.min.js"></script>
+</head>
+<body>
 
-let spoilChoice = "";
-let giftChoice = "";
-let noClickCount = 0;
+    <!-- Floating Background Hearts Container -->
+    <div class="hearts-container" id="hearts-container"></div>
 
-// Funny phrases for the running "No" button
-const noMessages = [
-    "No",
-    "Are you sure? 😢",
-    "Think again! 🧐",
-    "Wrong button! 😂",
-    "Nice try! 🏃‍♀️",
-    "Pretty please? 🥺",
-    "You can't catch me!"
-];
+    <!-- Top Ribbon Decorations -->
+    <div class="ribbon top-left">🎀</div>
+    <div class="ribbon top-right">🎀</div>
 
-// Function to switch screens smoothly
-function nextScreen(screenNumber) {
-    const screens = document.querySelectorAll('.screen');
-    screens.forEach(screen => screen.classList.remove('active'));
+    <!-- Bottom Bouquet Decorations -->
+    <div class="bouquet bottom-left">💐</div>
+    <div class="bouquet bottom-right">💐</div>
 
-    document.getElementById(`screen-${screenNumber}`).classList.add('active');
-}
+    <!-- MAIN CONTAINER CARD -->
+    <div class="card">
 
-// Triggered when she clicks "Yes" on Screen 2
-function triggerYes() {
-    // Launch confetti celebration safely
-    if (typeof confetti === 'function') {
-        confetti({
-            particleCount: 100,
-            spread: 70,
-            origin: { y: 0.6 }
-        });
-    }
-    nextScreen(3);
-}
+        <!-- SCREEN 1: Intro -->
+        <div id="screen-1" class="screen active">
+            <div class="emoji-header">💌</div>
+            <h1>Hey! Let's just skip the small talk 🌸</h1>
+            <p class="subtitle">I want to take you out ✨</p>
+            <button class="pink-btn" onclick="nextScreen(2)">Lets do this</button>
+            <div class="emoji-footer">🧸</div>
+        </div>
 
-// Function to record how she wants to be spoiled
-function chooseSpoil(choice) {
-    spoilChoice = choice;
-    nextScreen(5); 
-}
+        <!-- SCREEN 2: The Question -->
+        <div id="screen-2" class="screen">
+            <div class="emoji-header">🐰</div>
+            <h1>Will you go out with me? 🥺</h1>
+            <p class="subtitle">Take your time, but remember there is only one correct answer...</p>
+            <div class="btn-group">
+                <button class="pink-btn" onclick="triggerYes()">Yes</button>
+                <button id="no-btn" class="pink-btn" onmouseover="moveButton()" onclick="moveButton()">No</button>
+            </div>
+        </div>
 
-// Function to record the gift, trigger final confetti, and send form data
-function chooseGift(choice) {
-    giftChoice = choice;
-    
-    // Launch grand finale confetti celebration safely
-    if (typeof confetti === 'function') {
-        confetti({
-            particleCount: 150,
-            spread: 100,
-            origin: { y: 0.5 }
-        });
-    }
+        <!-- SCREEN 3: Joe Reaction -->
+        <div id="screen-3" class="screen">
+            <div class="emoji-header">🐰</div>
+            <h1>I knew you would say yes!! 😎</h1>
+            <div class="image-frame">
+                <img src="joe.jpg" alt="Joe Goldberg" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400'">
+            </div>
+            <button class="pink-btn" onclick="nextScreen(4)">Continue</button>
+        </div>
 
-    nextScreen(6);
+        <!-- SCREEN 4: Spoiled Options -->
+        <div id="screen-4" class="screen">
+            <div class="emoji-header">🐰</div>
+            <h1>How exactly do you want to be spoiled?</h1>
+            <div class="vertical-btns">
+                <button class="pink-btn" onclick="chooseSpoil('Movie')">Movie</button>
+                <button class="pink-btn" onclick="chooseSpoil('Coffee')">Coffee</button>
+                <button class="pink-btn" onclick="chooseSpoil('Ice cream')">Ice cream</button>
+                <button class="pink-btn" onclick="chooseSpoil('Bowling')">Bowling</button>
+            </div>
+        </div>
 
-    // Send choices quietly to Formspree
-    fetch(formspreeLink, {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            "Message": "She said YES! 🎉",
-            "How to be spoiled": spoilChoice,
-            "What to bring": giftChoice
-        })
-    }).catch(error => console.log("Error sending data"));
-}
+        <!-- SCREEN 5: Flowers / Chocolate Options -->
+        <div id="screen-5" class="screen">
+            <div class="emoji-header">🐰</div>
+            <h1>Important: What am I supposed to show up with?</h1>
+            <p class="subtitle">Just so I can make sure you actually have a good time :</p>
+            <div class="grid-btns">
+                <button class="pink-btn" onclick="chooseGift('Roses 🌹')">Roses 🌹</button>
+                <button class="pink-btn" onclick="chooseGift('Sunflowers 🌻')">Sunflowers 🌻</button>
+                <button class="pink-btn" onclick="chooseGift('Tulips or Lilies 🌷')">Tulips or Lilies 🌷</button>
+                <button class="pink-btn" onclick="chooseGift('Chocolates 🍫')">chocolates 🍫</button>
+            </div>
+        </div>
 
-// Function to make the "No" button run away and change text
-function moveButton() {
-    const noBtn = document.getElementById('no-btn');
-    if (!noBtn) return;
-    
-    noClickCount = (noClickCount + 1) % noMessages.length;
-    noBtn.innerText = noMessages[noClickCount];
+        <!-- SCREEN 6: Final Outro -->
+        <div id="screen-6" class="screen">
+            <div class="emoji-header">✨</div>
+            <h1>See you then. 💖</h1>
+            <div class="image-frame">
+                <img src="67.jpg" alt="Final Rose" onerror="this.src='https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=400'">
+            </div>
+        </div>
 
-    const randomX = Math.floor(Math.random() * 220) - 110;
-    const randomY = Math.floor(Math.random() * 120) - 60;
+    </div>
 
-    noBtn.style.position = 'relative';
-    noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
-}
-
-// Automatically generate floating background hearts
-function createHeart() {
-    const container = document.getElementById('hearts-container');
-    if (!container) return;
-
-    const heart = document.createElement('div');
-    heart.classList.add('heart');
-    heart.innerHTML = '❤️';
-    
-    heart.style.left = Math.random() * 100 + 'vw';
-    heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
-    
-    container.appendChild(heart);
-
-    setTimeout(() => {
-        heart.remove();
-    }, 7000);
-}
-
-setInterval(createHeart, 400);
+    <script src="script.js"></script>
+</body>
+</html>
