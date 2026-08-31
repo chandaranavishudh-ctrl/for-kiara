@@ -6,34 +6,34 @@
 }
 
 body {
-    background-color: #fae1dd;
+    background-color: #fce4ec;
     height: 100vh;
+    width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    position: relative;
 }
 
-/* Screen Management & Background Images */
+/* Screen Frame - Fixed 16:9 Aspect Ratio matching your background images */
 .screen {
     display: none;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    width: 100%;
-    height: 100vh;
-    background-size: cover;
+    position: relative;
+    width: 100vw;
+    height: 56.25vw; /* 16:9 Aspect Ratio */
+    max-width: 1000px;
+    max-height: 562.5px;
+    background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
 }
 
 .screen.active {
     display: flex;
+    justify-content: center;
 }
 
-/* Assigning each screen its respective background image */
+/* Assigning background images */
 #screen-1 { background-image: url('1.jpg'); }
 #screen-2 { background-image: url('2.jpg'); }
 #screen-3 { background-image: url('3.jpg'); }
@@ -41,43 +41,44 @@ body {
 #screen-5 { background-image: url('5.jpg'); }
 #screen-6 { background-image: url('6.jpg'); }
 
-/* Universal Button Style */
+/* Pink Button Styling */
 .pink-btn {
     background-color: #ff6b6b;
     color: white;
-    border: none;
+    border: 3px solid #e04848;
     border-radius: 50px;
     font-size: 1.1rem;
     font-weight: 700;
     cursor: pointer;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     transition: transform 0.1s ease, background-color 0.2s;
     outline: none;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
 }
 
 .pink-btn:hover {
     background-color: #fa5252;
 }
 
-/* Screen 1 Button Positioning */
+/* Precise Percentage Positioning (Never shifts out of place) */
+
+/* Screen 1: Lets do this */
 .btn-s1 {
-    padding: 14px 45px;
     position: absolute;
-    bottom: 19vh;
+    top: 60%;
+    padding: 12px 40px;
 }
 
-/* Screen 2 Button Positioning (Yes / Running No) */
+/* Screen 2: Yes & Running No */
 .btn-group-s2 {
-    display: flex;
-    gap: 30px;
     position: absolute;
-    bottom: 22vh;
-    width: 100%;
-    justify-content: center;
+    top: 65%;
+    display: flex;
+    gap: 25px;
 }
 
 .btn-group-s2 .pink-btn {
-    padding: 14px 45px;
+    padding: 12px 45px;
 }
 
 #no-btn {
@@ -85,43 +86,40 @@ body {
     transition: 0.15s ease-out;
 }
 
-/* Screen 3 Button Positioning */
+/* Screen 3: Continue */
 .btn-s3 {
-    padding: 14px 45px;
     position: absolute;
-    bottom: 14vh;
+    top: 84%;
+    padding: 12px 45px;
 }
 
-/* Screen 4 Options Positioning */
+/* Screen 4: Spoiled Vertical Buttons */
 .vertical-btns {
+    position: absolute;
+    top: 42%;
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    width: 260px;
-    position: absolute;
-    bottom: 12vh;
+    gap: 10px;
+    width: 240px;
 }
 
 .vertical-btns .pink-btn {
     width: 100%;
-    padding: 12px 20px;
+    padding: 10px 20px;
 }
 
-/* Screen 5 Options Grid Positioning */
+/* Screen 5: Flower & Chocolate Grid Buttons */
 .grid-btns {
+    position: absolute;
+    top: 60%;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 15px;
-    width: 440px;
-    position: absolute;
-    bottom: 18vh;
+    gap: 12px;
+    width: 420px;
 }
 
 .grid-btns .pink-btn {
     width: 100%;
-    padding: 14px 10px;
-}
-
-@media (max-width: 600px) {
-    .grid-btns { width: 90%; }
+    padding: 12px 10px;
+    font-size: 1rem;
 }
