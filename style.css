@@ -6,13 +6,22 @@
 }
 
 body {
-    background-color: #fae1dd;
+    /* Live Shifting Gradient Background Animation */
+    background: linear-gradient(-45deg, #fae1dd, #ffcad4, #f8edeb, #ffd1d6);
+    background-size: 400% 400%;
+    animation: gradientBG 12s ease infinite;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
     position: relative;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 /* Floating Hearts Background Animation */
@@ -31,7 +40,7 @@ body {
     position: absolute;
     bottom: -20px;
     font-size: 1.5rem;
-    color: #f08080;
+    color: #ff6b6b;
     opacity: 0.6;
     animation: floatUp 6s linear infinite;
 }
@@ -66,15 +75,15 @@ body {
 .card {
     position: relative;
     z-index: 2;
-    background: rgba(255, 255, 255, 0.75);
-    backdrop-filter: blur(8px);
+    background: rgba(255, 255, 255, 0.82);
+    backdrop-filter: blur(10px);
     border: 3px solid #ffcad4;
     border-radius: 25px;
     padding: 40px 30px;
     width: 90%;
     max-width: 580px;
     min-height: 440px;
-    box-shadow: 0 10px 30px rgba(255, 154, 162, 0.3);
+    box-shadow: 0 15px 35px rgba(255, 154, 162, 0.35);
     display: flex;
     justify-content: center;
     align-items: center;
