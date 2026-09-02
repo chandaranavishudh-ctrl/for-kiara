@@ -4,28 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
+    <!-- Link Preview Title -->
     <title>For Kiara 💖</title>
     
+    <!-- Open Graph tags for WhatsApp / Social Media Previews -->
     <meta property="og:title" content="For Kiara 💖">
     <meta property="og:description" content="Click to open your special message ✨">
     <meta property="og:type" content="website">
 
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- Include Confetti Library -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.min.js"></script>
 </head>
 <body>
 
+    <!-- Floating Background Hearts Container -->
     <div class="hearts-container" id="hearts-container"></div>
 
+    <!-- Top Ribbon Decorations -->
     <div class="ribbon top-left">🎀</div>
     <div class="ribbon top-right">🎀</div>
 
+    <!-- Bottom Bouquet Decorations -->
     <div class="bouquet bottom-left">💐</div>
     <div class="bouquet bottom-right">💐</div>
 
+    <!-- MAIN CONTAINER CARD -->
     <div class="card">
 
+        <!-- SCREEN 1: Intro (Uses Teddy Bear emoji) -->
         <div id="screen-1" class="screen active">
             <div class="emoji-header">💌</div>
             <h1>Hey! Let's just skip the small talk 🌸</h1>
@@ -34,9 +42,10 @@
             <div class="emoji-footer">🧸</div>
         </div>
 
+        <!-- SCREEN 2: The Question (Updated text) -->
         <div id="screen-2" class="screen">
             <div class="graphic-header"><img src="bunny.png" alt="Cute Graphic"></div>
-            <h1>Will you go out with me? 🥺</h1>
+            <h1>Would you go out with me? 🥺</h1>
             <p class="subtitle">Take your time, but remember there is only one correct answer...</p>
             <div class="btn-group">
                 <button class="pink-btn" onclick="triggerYes()">Yes</button>
@@ -44,6 +53,7 @@
             </div>
         </div>
 
+        <!-- SCREEN 3: Joe Reaction -->
         <div id="screen-3" class="screen">
             <div class="graphic-header"><img src="bunny.png" alt="Cute Graphic"></div>
             <h1>I knew you would say yes!! 😎</h1>
@@ -53,6 +63,7 @@
             <button class="pink-btn" onclick="nextScreen(4)">Continue</button>
         </div>
 
+        <!-- SCREEN 4: Spoiled Options -->
         <div id="screen-4" class="screen">
             <div class="graphic-header"><img src="bunny.png" alt="Cute Graphic"></div>
             <h1>How exactly do you want to be spoiled?</h1>
@@ -68,6 +79,7 @@
             </div>
         </div>
 
+        <!-- SCREEN 5: Flowers / Chocolate Options -->
         <div id="screen-5" class="screen">
             <div class="graphic-header"><img src="bunny.png" alt="Cute Graphic"></div>
             <h1>Important: What am I supposed to show up with?</h1>
@@ -80,13 +92,14 @@
             </div>
         </div>
 
+        <!-- SCREEN 6: Queue Prank Screen -->
         <div id="screen-6" class="screen">
             <div class="graphic-header"><img src="bunny.png" alt="Cute Graphic"></div>
-            <h1>⚠️ Date Request in Waiting Queue</h1>
+            <h1>✨ You're officially on the list</h1>
             <p class="queue-subtitle">Remember, this is not a date. This is the line to go out with Vishudh.</p>
             
             <div class="queue-container">
-                <div class="queue-row"><span>1. Narendra Modi 🇮🇳</span></div>
+                <div class="queue-row"><span>1. Narendra Modi</span></div>
                 <div class="queue-row"><span>2. Batman 🦇</span></div>
                 <div class="queue-row"><span>3. Megan Fox 🌟</span></div>
                 <div class="queue-row"><span>4. Pikachu ⚡</span></div>
@@ -97,6 +110,7 @@
                 <div class="queue-row"><span>6. Anonymous Admirer 🌹</span></div>
             </div>
 
+            <!-- Error box hidden cleanly by default using inline style display: none -->
             <div id="error-box" class="error-msg" style="display: none;">
                 ❌ <strong>Payment Failed: Transaction Error 404</strong><br>
                 <span>Reason: Your money has no power here. Server overloaded with high-priority requests.</span>
@@ -108,6 +122,7 @@
             </div>
         </div>
 
+        <!-- SCREEN 7: Final Outro -->
         <div id="screen-7" class="screen">
             <div class="graphic-header"><img src="bunny.png" alt="Cute Graphic"></div>
             <h1>See you then. 💖</h1>
