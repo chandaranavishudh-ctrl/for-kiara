@@ -72,20 +72,22 @@
             <button class="pink-btn" onclick="nextScreen(4)">Continue</button>
         </div>
 
-        <!-- SCREEN 4: Spoiled Options -->
+        <!-- SCREEN 4: Spoiled Options (Multi-select) -->
         <div id="screen-4" class="screen">
             <div class="graphic-header"><img src="bunny.png" alt="Cute Graphic"></div>
             <h1>How exactly do you want to be spoiled?</h1>
+            <p class="subtitle">Select as many as you like! ✨</p>
             <div class="grid-btns spoil-grid">
-                <button class="pink-btn" onclick="chooseSpoil('Movie')">Movie 🎬</button>
-                <button class="pink-btn" onclick="chooseSpoil('Coffee')">Coffee ☕</button>
-                <button class="pink-btn" onclick="chooseSpoil('Ice cream')">Ice cream 🍦</button>
-                <button class="pink-btn" onclick="chooseSpoil('Bowling')">Bowling 🎳</button>
-                <button class="pink-btn" onclick="chooseSpoil('Go-karting')">Go-karting 🏎️</button>
-                <button class="pink-btn" onclick="chooseSpoil('Trampoline park')">Trampoline park 🦘</button>
-                <button class="pink-btn" onclick="chooseSpoil('Arcade gaming')">Arcade gaming 🕹️</button>
-                <button class="pink-btn" onclick="chooseSpoil('Netflix & chill')">Netflix & chill 🍿</button>
+                <button type="button" class="pink-btn spoil-option" onclick="toggleSpoil(this, 'Movie')">Movie 🎬</button>
+                <button type="button" class="pink-btn spoil-option" onclick="toggleSpoil(this, 'Coffee')">Coffee ☕</button>
+                <button type="button" class="pink-btn spoil-option" onclick="toggleSpoil(this, 'Ice cream')">Ice cream 🍦</button>
+                <button type="button" class="pink-btn spoil-option" onclick="toggleSpoil(this, 'Bowling')">Bowling 🎳</button>
+                <button type="button" class="pink-btn spoil-option" onclick="toggleSpoil(this, 'Go-karting')">Go-karting 🏎️</button>
+                <button type="button" class="pink-btn spoil-option" onclick="toggleSpoil(this, 'Trampoline park')">Trampoline park 🦘</button>
+                <button type="button" class="pink-btn spoil-option" onclick="toggleSpoil(this, 'Arcade gaming')">Arcade gaming 🕹️</button>
+                <button type="button" class="pink-btn spoil-option" onclick="toggleSpoil(this, 'Netflix & chill')">Netflix & chill 🍿</button>
             </div>
+            <button class="pink-btn confirm-spoil-btn" onclick="submitSpoilChoices()">Confirm Choices ✨</button>
         </div>
 
         <!-- SCREEN 5: Flowers / Chocolate Options -->
