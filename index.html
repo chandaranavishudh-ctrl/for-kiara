@@ -82,6 +82,27 @@
 
         <div id="screen-6" class="screen">
             <div class="graphic-header"><img src="bunny.png" alt="Cute Graphic"></div>
+            <h1>⚠️ Date Request in Waiting Queue</h1>
+            <div class="queue-box">
+                <p>1. Mysterious VIP 🕶️</p>
+                <p>2. Random Cat 🐈</p>
+                <p>3. Bob the Builder 🏗️</p>
+                <p>4. Pikachu ⚡</p>
+                <p class="highlight-queue"><strong>5. Kiara (You) 💖 — Status: Waiting</strong></p>
+                <p>6. Anonymous Admirer 🌹</p>
+            </div>
+            <div id="error-box" class="error-msg" style="display: none;">
+                ❌ <strong>Payment Failed: Transaction Error 404</strong><br>
+                <span>Reason: Your money has no power here. Server overloaded with high-priority requests.</span>
+            </div>
+            <div class="btn-group queue-btns" id="queue-action-btns">
+                <button class="pink-btn premium-btn" onclick="triggerPaymentError()">💸 Pay Premium to Skip Queue</button>
+                <button class="pink-btn wait-btn" onclick="finishPrank()">⏳ Wait Patiently</button>
+            </div>
+        </div>
+
+        <div id="screen-7" class="screen">
+            <div class="graphic-header"><img src="bunny.png" alt="Cute Graphic"></div>
             <h1>See you then. 💖</h1>
             <div class="image-frame">
                 <img src="67.jpg" alt="Final Rose" onerror="this.src='https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=400'">
