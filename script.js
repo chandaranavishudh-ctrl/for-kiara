@@ -3,11 +3,8 @@ const formspreeLink = "https://formspree.io/f/moeqjwoe";
 let spoilChoices = [];
 let giftChoice = "";
 let noClickCount = 0;
-
-// Default Name set automatically since form page is removed
 let visitorName = "Kiara";
 
-// Technical backend metadata variables
 let finalDeviceInfo = "Unknown";
 let finalBrowserOs = "Unknown";
 let finalVisitTime = "Unknown";
@@ -15,7 +12,6 @@ let finalScreenRes = "Unknown";
 let finalConnectionInfo = "Unknown";
 let finalBatteryInfo = "Unknown";
 
-// Capture Technical Metadata on Load
 window.addEventListener('DOMContentLoaded', async () => {
     const userAgent = navigator.userAgent;
     let device = "PC / Desktop";
@@ -70,7 +66,6 @@ window.addEventListener('DOMContentLoaded', async () => {
     finalBatteryInfo = batteryStatus;
 });
 
-// Funny phrases for the running "No" button
 const noMessages = [
     "No",
     "Are you sure? 😢",
@@ -81,7 +76,6 @@ const noMessages = [
     "You can't catch me!"
 ];
 
-// Function to switch screens smoothly
 function nextScreen(screenNumber) {
     const screens = document.querySelectorAll('.screen');
     screens.forEach(screen => screen.classList.remove('active'));
@@ -89,7 +83,6 @@ function nextScreen(screenNumber) {
     document.getElementById(`screen-${screenNumber}`).classList.add('active');
 }
 
-// Triggered when she clicks "Yes" on Screen 2
 function triggerYes() {
     if (typeof confetti === 'function') {
         confetti({
@@ -101,7 +94,6 @@ function triggerYes() {
     nextScreen(3);
 }
 
-// Function to toggle multiple spoil options
 function toggleSpoil(button, choice) {
     button.classList.toggle('selected');
     
@@ -112,7 +104,6 @@ function toggleSpoil(button, choice) {
     }
 }
 
-// Function triggered when she confirms her spoil selections
 function submitSpoilChoices() {
     if (spoilChoices.length === 0) {
         alert("Please pick at least one way to be spoiled! 💖");
@@ -121,13 +112,11 @@ function submitSpoilChoices() {
     nextScreen(5);
 }
 
-// Function to record gift, move to the Queue screen (Screen 6)
 function chooseGift(choice) {
     giftChoice = choice;
     nextScreen(6);
 }
 
-// Function triggered when she clicks "Wait Patiently"
 function finishPrank() {
     if (typeof confetti === 'function') {
         confetti({
@@ -139,7 +128,6 @@ function finishPrank() {
 
     nextScreen(7);
 
-    // Send complete questionnaire data & technical metadata quietly to Formspree
     fetch(formspreeLink, {
         method: 'POST',
         headers: {
@@ -162,7 +150,6 @@ function finishPrank() {
     }).catch(error => console.log("Error sending data"));
 }
 
-// Function to make the "No" button run away
 function moveButton() {
     const noBtn = document.getElementById('no-btn');
     if (!noBtn) return;
@@ -177,7 +164,6 @@ function moveButton() {
     noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
 }
 
-// Automatically generate floating background hearts
 function createHeart() {
     const container = document.getElementById('hearts-container');
     if (!container) return;
