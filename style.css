@@ -226,12 +226,16 @@ h1 {
     display: flex;
     gap: 15px;
     justify-content: center;
+    position: relative;
+    height: 70px;
 }
 
 .premium-btn {
     background: linear-gradient(135deg, #f72585, #7209b7);
     font-size: 0.95rem;
     padding: 12px 20px;
+    position: relative;
+    transition: 0.1s ease-out;
 }
 
 .wait-btn {
@@ -344,6 +348,7 @@ h1 {
     .queue-btns {
         flex-direction: column;
         gap: 10px;
+        height: auto;
     }
 
     .queue-btns .pink-btn {
