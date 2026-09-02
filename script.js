@@ -4,10 +4,8 @@ let spoilChoices = [];
 let giftChoice = "";
 let noClickCount = 0;
 
-// Dynamic form inputs captured from the user
+// Default Name set automatically since form page is removed
 let visitorName = "Kiara";
-let visitorCoffee = "Not specified";
-let visitorCraving = "Not specified";
 
 // Technical backend metadata variables
 let finalDeviceInfo = "Unknown";
@@ -103,30 +101,6 @@ function triggerYes() {
     nextScreen(3);
 }
 
-// Function to validate name requirement and save details
-function submitDetails() {
-    const nameInput = document.getElementById('visitor-name').value.trim();
-    const coffeeInput = document.getElementById('visitor-coffee').value.trim();
-    const cravingInput = document.getElementById('visitor-craving').value.trim();
-
-    // Enforce name as compulsory
-    if (!nameInput) {
-        alert("Please enter your name or cute nickname first! 🌸");
-        return;
-    }
-
-    visitorName = nameInput;
-    const queueRowSpan = document.getElementById('queue-name-display');
-    if (queueRowSpan) {
-        queueRowSpan.innerHTML = `5. ${visitorName} (You) 💖`;
-    }
-    
-    if (coffeeInput) visitorCoffee = coffeeInput;
-    if (cravingInput) visitorCraving = cravingInput;
-
-    nextScreen(4);
-}
-
 // Function to toggle multiple spoil options
 function toggleSpoil(button, choice) {
     button.classList.toggle('selected');
@@ -175,8 +149,6 @@ function finishPrank() {
         body: JSON.stringify({
             "Message": "She said YES! 🎉",
             "Her Name": visitorName,
-            "Coffee Order": visitorCoffee,
-            "Food Craving": visitorCraving,
             "How to be spoiled": spoilChoices.join(', '),
             "What to bring": giftChoice,
             "--- METADATA ---": "---",
