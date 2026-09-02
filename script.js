@@ -3,7 +3,6 @@ const formspreeLink = "https://formspree.io/f/moeqjwoe";
 let spoilChoices = [];
 let giftChoice = "";
 let noClickCount = 0;
-let premiumClickCount = 0;
 
 // Dynamic form inputs captured from the user
 let visitorName = "Kiara";
@@ -84,15 +83,6 @@ const noMessages = [
     "You can't catch me!"
 ];
 
-// Funny messages for the running premium button
-const premiumMessages = [
-    "💸 Pay Premium to Skip Queue",
-    "Nice try, no skipping! 😂",
-    "Still broken! 🚫",
-    "Catch me if you can! 🏃‍♀️",
-    "Error 404: Can't click me!"
-];
-
 // Function to switch screens smoothly
 function nextScreen(screenNumber) {
     const screens = document.querySelectorAll('.screen');
@@ -101,7 +91,7 @@ function nextScreen(screenNumber) {
     document.getElementById(`screen-${screenNumber}`).classList.add('active');
 }
 
-// Triggered when she clicks "Yes" on Screen 2 -> Routes directly to Joe Reaction (Screen 3)
+// Triggered when she clicks "Yes" on Screen 2
 function triggerYes() {
     if (typeof confetti === 'function') {
         confetti({
@@ -113,18 +103,22 @@ function triggerYes() {
     nextScreen(3);
 }
 
-// Function to capture her submitted details and update queue name instantly (Routes to Screen 4)
+// Function to validate name requirement and save details
 function submitDetails() {
     const nameInput = document.getElementById('visitor-name').value.trim();
     const coffeeInput = document.getElementById('visitor-coffee').value.trim();
     const cravingInput = document.getElementById('visitor-craving').value.trim();
 
-    if (nameInput) {
-        visitorName = nameInput; // Handles single or full names cleanly
-        const queueRowSpan = document.getElementById('queue-name-display');
-        if (queueRowSpan) {
-            queueRowSpan.innerHTML = `5. ${visitorName} (You) 💖`;
-        }
+    // Make name compulsory
+    if (!nameInput) {
+        alert("Please enter your name or cute nickname first! 🌸");
+        return;
+    }
+
+    visitorName = nameInput;
+    const queueRowSpan = document.getElementById('queue-name-display');
+    if (queueRowSpan) {
+        queueRowSpan.innerHTML = `5. ${visitorName} (You) 💖`;
     }
     
     if (coffeeInput) visitorCoffee = coffeeInput;
@@ -159,30 +153,15 @@ function chooseGift(choice) {
     nextScreen(6);
 }
 
-// Handles interaction for the "Pay Premium" button
-function handlePremiumClick() {
+// Static payment button click triggers the error box view
+function triggerPaymentError() {
     const errorBox = document.getElementById('error-box');
-    const premiumBtn = document.getElementById('premium-btn');
-    if (!premiumBtn) return;
-
-    if (premiumClickCount === 0) {
-        if (errorBox) {
-            errorBox.style.display = 'block';
-        }
-        premiumClickCount++;
-    } else {
-        premiumClickCount = (premiumClickCount + 1) % premiumMessages.length;
-        premiumBtn.innerText = premiumMessages[premiumClickCount];
-
-        const randomX = Math.floor(Math.random() * 180) - 90;
-        const randomY = Math.floor(Math.random() * 100) - 50;
-
-        premiumBtn.style.position = 'relative';
-        premiumBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
+    if (errorBox) {
+        errorBox.style.display = 'block';
     }
 }
 
-// Function triggered when she finishes the prank, submitting all data cleanly
+// Function triggered when she clicks "Wait Patiently"
 function finishPrank() {
     if (typeof confetti === 'function') {
         confetti({
