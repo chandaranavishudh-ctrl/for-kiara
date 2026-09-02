@@ -3,6 +3,7 @@ const formspreeLink = "https://formspree.io/f/moeqjwoe";
 let spoilChoice = "";
 let giftChoice = "";
 let noClickCount = 0;
+let premiumClickCount = 0;
 
 // Funny phrases for the running "No" button
 const noMessages = [
@@ -13,6 +14,15 @@ const noMessages = [
     "Nice try! 🏃‍♀️",
     "Pretty please? 🥺",
     "You can't catch me!"
+];
+
+// Funny messages that appear on the running premium button after the first click
+const premiumMessages = [
+    "💸 Pay Premium to Skip Queue",
+    "Nice try, no skipping! 😂",
+    "Still broken! 🚫",
+    "Catch me if you can! 🏃‍♀️",
+    "Error 404: Can't click me!"
 ];
 
 // Function to switch screens smoothly
@@ -41,21 +51,38 @@ function chooseSpoil(choice) {
     nextScreen(5); 
 }
 
-// Function to record gift, move to the new Queue Prank screen (Screen 6)
+// Function to record gift, move to the Queue Prank screen (Screen 6)
 function chooseGift(choice) {
     giftChoice = choice;
     nextScreen(6);
 }
 
-// Triggers the funny 404 payment error message when she clicks the premium button
-function triggerPaymentError() {
+// Handles the logic for clicking or hovering on the "Pay Premium" button
+function handlePremiumClick() {
     const errorBox = document.getElementById('error-box');
-    if (errorBox) {
-        errorBox.style.display = 'block';
+    const premiumBtn = document.getElementById('premium-btn');
+    if (!premiumBtn) return;
+
+    if (premiumClickCount === 0) {
+        // First click: Show the 404 Error box
+        if (errorBox) {
+            errorBox.style.display = 'block';
+        }
+        premiumClickCount++;
+    } else {
+        // Subsequent clicks/hovers: Make the button run away and change text!
+        premiumClickCount = (premiumClickCount + 1) % premiumMessages.length;
+        premiumBtn.innerText = premiumMessages[premiumClickCount];
+
+        const randomX = Math.floor(Math.random() * 180) - 90;
+        const randomY = Math.floor(Math.random() * 100) - 50;
+
+        premiumBtn.style.position = 'relative';
+        premiumBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
     }
 }
 
-// Function triggered when she decides to wait or bypasses the prank, triggering final submission & outro
+// Function triggered when she decides to wait, triggering final submission & outro
 function finishPrank() {
     if (typeof confetti === 'function') {
         confetti({
