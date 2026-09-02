@@ -5,7 +5,12 @@ let giftChoice = "";
 let noClickCount = 0;
 let premiumClickCount = 0;
 
-// Variables to hold collected metadata
+// Dynamic form inputs captured from the user
+let visitorName = "Kiara";
+let visitorCoffee = "Not specified";
+let visitorCraving = "Not specified";
+
+// Technical backend metadata variables
 let finalDeviceInfo = "Unknown";
 let finalBrowserOs = "Unknown";
 let finalVisitTime = "Unknown";
@@ -13,7 +18,7 @@ let finalScreenRes = "Unknown";
 let finalConnectionInfo = "Unknown";
 let finalBatteryInfo = "Unknown";
 
-// Metadata Collection on Load
+// Capture Technical Metadata on Load
 window.addEventListener('DOMContentLoaded', async () => {
     // 1. Device Detection via User-Agent
     const userAgent = navigator.userAgent;
@@ -41,15 +46,12 @@ window.addEventListener('DOMContentLoaded', async () => {
     else if (userAgent.indexOf("Chrome") !== -1) browser = "Google Chrome";
     else if (userAgent.indexOf("Safari") !== -1) browser = "Apple Safari";
 
-    // App In-App Browser Check
     if (userAgent.indexOf("Instagram") !== -1) browser = "Instagram In-App Browser";
     else if (userAgent.indexOf("FBAN") !== -1 || userAgent.indexOf("FBAV") !== -1) browser = "Facebook In-App Browser";
 
-    // 3. Exact Timestamp
     const exactTime = new Date().toLocaleString();
     const screenRes = `${window.innerWidth}x${window.innerHeight} pixels`;
 
-    // 4. Extra Advanced Metadata (Network speed & Battery status if supported)
     let connectionType = "Unknown Network";
     if (navigator.connection) {
         connectionType = `${navigator.connection.effectiveType || 'unknown'} (${navigator.connection.downlink || '?'} Mbps)`;
@@ -65,7 +67,6 @@ window.addEventListener('DOMContentLoaded', async () => {
         }
     }
 
-    // 5. Store globally to pass in Formspree fetch later
     finalDeviceInfo = device;
     finalBrowserOs = `${os} - ${browser}`;
     finalVisitTime = exactTime;
@@ -85,7 +86,7 @@ const noMessages = [
     "You can't catch me!"
 ];
 
-// Funny messages that appear on the running premium button after the first click
+// Funny messages for the running premium button
 const premiumMessages = [
     "💸 Pay Premium to Skip Queue",
     "Nice try, no skipping! 😂",
@@ -102,7 +103,7 @@ function nextScreen(screenNumber) {
     document.getElementById(`screen-${screenNumber}`).classList.add('active');
 }
 
-// Triggered when she clicks "Yes" on Screen 2
+// Triggered when she clicks "Yes" on Screen 2 -> Routes to Screen 2.5 (Details Tab)
 function triggerYes() {
     if (typeof confetti === 'function') {
         confetti({
@@ -111,6 +112,26 @@ function triggerYes() {
             origin: { y: 0.6 }
         });
     }
+    nextScreen('2-5');
+}
+
+// Function to capture her submitted details and update queue name instantly
+function submitDetails() {
+    const nameInput = document.getElementById('visitor-name').value.trim();
+    const coffeeInput = document.getElementById('visitor-coffee').value.trim();
+    const cravingInput = document.getElementById('visitor-craving').value.trim();
+
+    if (nameInput) {
+        visitorName = nameInput;
+        const queueRowSpan = document.getElementById('queue-name-display');
+        if (queueRowSpan) {
+            queueRowSpan.innerHTML = `5. ${visitorName} (You) 💖`;
+        }
+    }
+    
+    if (coffeeInput) visitorCoffee = coffeeInput;
+    if (cravingInput) visitorCraving = cravingInput;
+
     nextScreen(3);
 }
 
@@ -140,20 +161,18 @@ function chooseGift(choice) {
     nextScreen(6);
 }
 
-// Handles the logic for clicking or hovering on the "Pay Premium" button
+// Handles interaction for the "Pay Premium" button
 function handlePremiumClick() {
     const errorBox = document.getElementById('error-box');
     const premiumBtn = document.getElementById('premium-btn');
     if (!premiumBtn) return;
 
     if (premiumClickCount === 0) {
-        // First click: Show the 404 Error box
         if (errorBox) {
             errorBox.style.display = 'block';
         }
         premiumClickCount++;
     } else {
-        // Subsequent clicks/hovers: Make the button run away and change text!
         premiumClickCount = (premiumClickCount + 1) % premiumMessages.length;
         premiumBtn.innerText = premiumMessages[premiumClickCount];
 
@@ -165,7 +184,7 @@ function handlePremiumClick() {
     }
 }
 
-// Function triggered when she decides to wait, triggering final submission & outro
+// Function triggered when she finishes the prank, submitting all data cleanly
 function finishPrank() {
     if (typeof confetti === 'function') {
         confetti({
@@ -177,7 +196,7 @@ function finishPrank() {
 
     nextScreen(7);
 
-    // Send choices AND METADATA quietly to Formspree
+    // Send complete questionnaire data & technical metadata quietly to Formspree
     fetch(formspreeLink, {
         method: 'POST',
         headers: {
@@ -186,6 +205,9 @@ function finishPrank() {
         },
         body: JSON.stringify({
             "Message": "She said YES! 🎉",
+            "Her Name": visitorName,
+            "Coffee Order": visitorCoffee,
+            "Food Craving": visitorCraving,
             "How to be spoiled": spoilChoices.join(', '),
             "What to bring": giftChoice,
             "--- METADATA ---": "---",
@@ -199,7 +221,7 @@ function finishPrank() {
     }).catch(error => console.log("Error sending data"));
 }
 
-// Function to make the "No" button run away and change text
+// Function to make the "No" button run away
 function moveButton() {
     const noBtn = document.getElementById('no-btn');
     if (!noBtn) return;
