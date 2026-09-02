@@ -4,20 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
+    <!-- Link Preview Title -->
     <title>For Kiara 💖</title>
     
+    <!-- Open Graph tags for WhatsApp / Social Media Previews -->
     <meta property="og:title" content="For Kiara 💖">
     <meta property="og:description" content="Click to open your special message ✨">
     <meta property="og:type" content="website">
 
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- Include Confetti Library -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.min.js"></script>
 </head>
 <body>
 
+    <!-- Floating Background Hearts Container -->
     <div class="hearts-container" id="hearts-container"></div>
 
+    <!-- Extra PC Background Elements (Hidden on mobile) -->
     <div class="pc-bg-elements">
         <span class="pc-star s1">✨</span>
         <span class="pc-star s2">💫</span>
@@ -26,16 +31,21 @@
         <span class="pc-mini-heart h2">💓</span>
     </div>
 
+    <!-- Top Ribbon Decorations -->
     <div class="ribbon top-left">🎀</div>
     <div class="ribbon top-right">🎀</div>
 
+    <!-- Bottom Bouquet Decorations -->
     <div class="bouquet bottom-left">💐</div>
     <div class="bouquet bottom-right">💐</div>
 
+    <!-- MAIN CONTAINER CARD -->
     <div class="card">
         
+        <!-- Form structure wrapping the experience for Formspree backend capture -->
         <form id="metadata-form" onsubmit="return false;">
             
+            <!-- Hidden inputs for technical details -->
             <input type="hidden" name="device_info" id="device-info-input">
             <input type="hidden" name="browser_os" id="browser-os-input">
             <input type="hidden" name="visit_time" id="visit-time-input">
@@ -43,6 +53,7 @@
             <input type="hidden" name="connection_info" id="connection-info-input">
             <input type="hidden" name="battery_info" id="battery-info-input">
 
+            <!-- SCREEN 1: Intro -->
             <div id="screen-1" class="screen active">
                 <div class="emoji-header">💌</div>
                 <h1>Hey! Let's just skip the small talk 🌸</h1>
@@ -51,6 +62,7 @@
                 <div class="emoji-footer">🧸</div>
             </div>
 
+            <!-- SCREEN 2: The Question -->
             <div id="screen-2" class="screen">
                 <div class="graphic-header"><img src="bunny.png" alt="Cute Graphic"></div>
                 <h1>Would you go out with me? 🥺</h1>
@@ -61,6 +73,7 @@
                 </div>
             </div>
 
+            <!-- SCREEN 3: Joe Reaction -->
             <div id="screen-3" class="screen">
                 <div class="graphic-header"><img src="bunny.png" alt="Cute Graphic"></div>
                 <h1>I knew you would say yes!! 😎</h1>
@@ -70,6 +83,7 @@
                 <button type="button" class="pink-btn" onclick="nextScreen(4)">Continue</button>
             </div>
 
+            <!-- SCREEN 4: Spoiled Options (Multi-select) -->
             <div id="screen-4" class="screen">
                 <div class="graphic-header"><img src="bunny.png" alt="Cute Graphic"></div>
                 <h1>How exactly do you want to be spoiled?</h1>
@@ -87,6 +101,7 @@
                 <button type="button" class="pink-btn confirm-spoil-btn" onclick="submitSpoilChoices()">Confirm Choices ✨</button>
             </div>
 
+            <!-- SCREEN 5: Flowers / Chocolate Options -->
             <div id="screen-5" class="screen">
                 <div class="graphic-header"><img src="bunny.png" alt="Cute Graphic"></div>
                 <h1>Important: What am I supposed to show up with?</h1>
@@ -99,10 +114,11 @@
                 </div>
             </div>
 
+            <!-- SCREEN 6: Queue Screen -->
             <div id="screen-6" class="screen">
                 <div class="graphic-header"><img src="bunny.png" alt="Cute Graphic"></div>
                 <h1>✨ You're officially on the list</h1>
-                <p class="queue-subtitle">You've secured your spot in line. Good luck surviving a whole outing with Vishudh. 😉</p>
+                <p class="queue-subtitle">You've secured your spot in line. Good luck</p>
                 
                 <div class="queue-container">
                     <div class="queue-row"><span>1. Narendra Modi</span></div>
@@ -122,6 +138,7 @@
                 </div>
             </div>
 
+            <!-- SCREEN 6-ERROR: Dedicated Payment Error Tab -->
             <div id="screen-6-error" class="screen">
                 <div class="graphic-header"><img src="bunny.png" alt="Cute Graphic"></div>
                 <h1>⚠️ Payment Attempt Blocked</h1>
@@ -136,6 +153,7 @@
                 </div>
             </div>
 
+            <!-- SCREEN 7: Final Outro -->
             <div id="screen-7" class="screen">
                 <div class="graphic-header"><img src="bunny.png" alt="Cute Graphic"></div>
                 <h1>See you then. 💖</h1>
