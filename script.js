@@ -20,7 +20,6 @@ let finalBatteryInfo = "Unknown";
 
 // Capture Technical Metadata on Load
 window.addEventListener('DOMContentLoaded', async () => {
-    // 1. Device Detection via User-Agent
     const userAgent = navigator.userAgent;
     let device = "PC / Desktop";
     if (/android/i.test(userAgent)) {
@@ -29,7 +28,6 @@ window.addEventListener('DOMContentLoaded', async () => {
         device = "iPhone / iOS Device";
     }
 
-    // 2. Operating System & Browser Detection
     let os = "Unknown OS";
     if (userAgent.indexOf("Win") !== -1) os = "Windows";
     if (userAgent.indexOf("Mac") !== -1) os = "MacOS";
@@ -103,7 +101,7 @@ function nextScreen(screenNumber) {
     document.getElementById(`screen-${screenNumber}`).classList.add('active');
 }
 
-// Triggered when she clicks "Yes" on Screen 2 -> Routes to Screen 2.5 (Details Tab)
+// Triggered when she clicks "Yes" on Screen 2 -> Routes directly to Joe Reaction (Screen 3)
 function triggerYes() {
     if (typeof confetti === 'function') {
         confetti({
@@ -112,17 +110,17 @@ function triggerYes() {
             origin: { y: 0.6 }
         });
     }
-    nextScreen('2-5');
+    nextScreen(3);
 }
 
-// Function to capture her submitted details and update queue name instantly
+// Function to capture her submitted details and update queue name instantly (Routes to Screen 4)
 function submitDetails() {
     const nameInput = document.getElementById('visitor-name').value.trim();
     const coffeeInput = document.getElementById('visitor-coffee').value.trim();
     const cravingInput = document.getElementById('visitor-craving').value.trim();
 
     if (nameInput) {
-        visitorName = nameInput;
+        visitorName = nameInput; // Handles single or full names cleanly
         const queueRowSpan = document.getElementById('queue-name-display');
         if (queueRowSpan) {
             queueRowSpan.innerHTML = `5. ${visitorName} (You) 💖`;
@@ -132,7 +130,7 @@ function submitDetails() {
     if (coffeeInput) visitorCoffee = coffeeInput;
     if (cravingInput) visitorCraving = cravingInput;
 
-    nextScreen(3);
+    nextScreen(4);
 }
 
 // Function to toggle multiple spoil options
