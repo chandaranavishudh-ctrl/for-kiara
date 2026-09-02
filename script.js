@@ -109,7 +109,7 @@ function submitDetails() {
     const coffeeInput = document.getElementById('visitor-coffee').value.trim();
     const cravingInput = document.getElementById('visitor-craving').value.trim();
 
-    // Make name compulsory
+    // Enforce name as compulsory
     if (!nameInput) {
         alert("Please enter your name or cute nickname first! 🌸");
         return;
@@ -147,18 +147,10 @@ function submitSpoilChoices() {
     nextScreen(5);
 }
 
-// Function to record gift, move to the Queue Prank screen (Screen 6)
+// Function to record gift, move to the Queue screen (Screen 6)
 function chooseGift(choice) {
     giftChoice = choice;
     nextScreen(6);
-}
-
-// Static payment button click triggers the error box view
-function triggerPaymentError() {
-    const errorBox = document.getElementById('error-box');
-    if (errorBox) {
-        errorBox.style.display = 'block';
-    }
 }
 
 // Function triggered when she clicks "Wait Patiently"
