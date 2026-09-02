@@ -25,7 +25,6 @@ function nextScreen(screenNumber) {
 
 // Triggered when she clicks "Yes" on Screen 2
 function triggerYes() {
-    // Launch confetti celebration safely
     if (typeof confetti === 'function') {
         confetti({
             particleCount: 100,
@@ -36,17 +35,28 @@ function triggerYes() {
     nextScreen(3);
 }
 
-// Function to record how she wants to be spoiled
+// Function to record how she wants to be spoiled and move to gift screen
 function chooseSpoil(choice) {
     spoilChoice = choice;
     nextScreen(5); 
 }
 
-// Function to record the gift, trigger final confetti, and send form data
+// Function to record gift, move to the new Queue Prank screen (Screen 6)
 function chooseGift(choice) {
     giftChoice = choice;
-    
-    // Launch grand finale confetti celebration safely
+    nextScreen(6);
+}
+
+// Triggers the funny 404 payment error message when she clicks the premium button
+function triggerPaymentError() {
+    const errorBox = document.getElementById('error-box');
+    if (errorBox) {
+        errorBox.style.display = 'block';
+    }
+}
+
+// Function triggered when she decides to wait or bypasses the prank, triggering final submission & outro
+function finishPrank() {
     if (typeof confetti === 'function') {
         confetti({
             particleCount: 150,
@@ -55,7 +65,7 @@ function chooseGift(choice) {
         });
     }
 
-    nextScreen(6);
+    nextScreen(7);
 
     // Send choices quietly to Formspree
     fetch(formspreeLink, {
