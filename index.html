@@ -11,7 +11,7 @@
     <meta property="og:type" content="website">
 
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.min.js"></script>
 </head>
 <body>
@@ -83,18 +83,25 @@
         <div id="screen-6" class="screen">
             <div class="graphic-header"><img src="bunny.png" alt="Cute Graphic"></div>
             <h1>⚠️ Date Request in Waiting Queue</h1>
-            <div class="queue-box">
-                <p>1. Mysterious VIP 🕶️</p>
-                <p>2. Random Cat 🐈</p>
-                <p>3. Bob the Builder 🏗️</p>
-                <p>4. Pikachu ⚡</p>
-                <p class="highlight-queue"><strong>5. Kiara (You) 💖 — Status: Waiting</strong></p>
-                <p>6. Anonymous Admirer 🌹</p>
+            <p class="queue-subtitle">Remember, this is not a date. This is the line to go out with Vishudh.</p>
+            
+            <div class="queue-container">
+                <div class="queue-row"><span>1. Narendra Modi 🇮🇳</span></div>
+                <div class="queue-row"><span>2. Batman 🦇</span></div>
+                <div class="queue-row"><span>3. Megan Fox 🌟</span></div>
+                <div class="queue-row"><span>4. Pikachu ⚡</span></div>
+                <div class="queue-row user-row">
+                    <span>5. Kiara (You) 💖</span>
+                    <span class="queue-badge">Estimated 6-8 Weeks</span>
+                </div>
+                <div class="queue-row"><span>6. Anonymous Admirer 🌹</span></div>
             </div>
+
             <div id="error-box" class="error-msg" style="display: none;">
                 ❌ <strong>Payment Failed: Transaction Error 404</strong><br>
                 <span>Reason: Your money has no power here. Server overloaded with high-priority requests.</span>
             </div>
+            
             <div class="btn-group queue-btns" id="queue-action-btns">
                 <button id="premium-btn" class="pink-btn premium-btn" onmouseover="handlePremiumClick()" onclick="handlePremiumClick()">💸 Pay Premium to Skip Queue</button>
                 <button class="pink-btn wait-btn" onclick="finishPrank()">⏳ Wait Patiently</button>
