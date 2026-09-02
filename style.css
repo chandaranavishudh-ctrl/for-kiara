@@ -165,18 +165,79 @@ h1 {
 
 .btn-group {
     display: flex;
-    gap: 25px;
+    gap: 20px;
     position: relative;
     margin-top: 15px;
     justify-content: center;
     align-items: center;
-    height: 70px;
     width: 100%;
 }
 
 #no-btn {
     position: relative;
     transition: 0.1s ease-out;
+}
+
+/* Queue Prank Styling */
+.queue-box {
+    background: rgba(255, 255, 255, 0.85);
+    border: 2px dashed #ff6b6b;
+    border-radius: 15px;
+    padding: 15px 25px;
+    width: 100%;
+    max-width: 450px;
+    margin: 10px 0 15px 0;
+    text-align: left;
+    font-size: 1.05rem;
+    color: #553f3f;
+    line-height: 1.6;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.highlight-queue {
+    color: #d90429;
+    font-weight: 700;
+    background: #ffe3e3;
+    padding: 2px 6px;
+    border-radius: 6px;
+}
+
+.error-msg {
+    background: #ffccd5;
+    border: 2px solid #ff4d6d;
+    color: #721c24;
+    padding: 12px 15px;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    max-width: 450px;
+    margin-bottom: 15px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(255, 77, 109, 0.2);
+    animation: shake 0.3s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+.queue-btns {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.premium-btn {
+    background: linear-gradient(135deg, #f72585, #7209b7);
+    font-size: 0.95rem;
+    padding: 12px 20px;
+}
+
+.wait-btn {
+    background: #4cc9f0;
+    font-size: 0.95rem;
+    padding: 12px 20px;
 }
 
 /* Expanded Spoil Grid Options */
@@ -273,6 +334,20 @@ h1 {
     .pink-btn {
         padding: 10px 20px;
         font-size: 0.95rem;
+    }
+
+    .queue-box {
+        font-size: 0.9rem;
+        padding: 10px 15px;
+    }
+
+    .queue-btns {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .queue-btns .pink-btn {
+        width: 100%;
     }
 
     .spoil-grid {
