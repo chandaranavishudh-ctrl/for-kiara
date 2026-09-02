@@ -14,6 +14,7 @@ body {
     justify-content: center;
     align-items: center;
     position: relative;
+    /* Allows scrolling on mobile if content overflows */
     overflow-x: hidden;
     overflow-y: auto;
     padding: 20px 0;
@@ -383,34 +384,20 @@ h1 {
     }
 
     body {
-        align-items: center;
-        padding: 20px 10px;
+        align-items: flex-start; /* Ensures content starts from top for smooth scrolling */
+        padding: 10px;
     }
 
-    /* Move the sticker out of the white card and position it at the top between the two bows */
-    .graphic-header {
-        position: absolute;
-        top: 25px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 120px; /* Scaled bigger! */
-        height: 120px;
-        margin: 0;
-        z-index: 5;
-    }
-
-    /* Give the white card extra top space so content doesn't crash into the moved sticker */
     .card {
         background: rgba(255, 255, 255, 0.95);
         border: 2px solid #ffccd5;
         border-radius: 24px;
         box-shadow: 0 10px 30px rgba(255, 107, 107, 0.15);
-        padding: 70px 10px 15px 10px; /* Added top padding to clear the sticker */
+        padding: 15px 10px;
         width: 92%;
         max-width: 400px;
         backdrop-filter: blur(5px);
         margin: auto;
-        position: relative;
     }
 
     h1 {
@@ -428,6 +415,13 @@ h1 {
     .queue-subtitle {
         font-size: 0.82rem;
         margin-bottom: 10px;
+    }
+
+    /* Restore compact mobile sticker size */
+    .graphic-header {
+        width: 85px;
+        height: 85px;
+        margin-bottom: 6px;
     }
 
     .emoji-header {
