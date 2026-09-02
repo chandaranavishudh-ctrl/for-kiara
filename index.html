@@ -83,18 +83,18 @@
                 <button type="button" class="pink-btn" onclick="nextScreen('3-5')">Continue</button>
             </div>
 
-            <!-- SCREEN 3.5: Registration Tab (Name Mandatory) -->
+            <!-- SCREEN 3.5: Registration Tab (Clean placeholders, Name mandatory) -->
             <div id="screen-3-5" class="screen">
                 <div class="graphic-header"><img src="bunny.png" alt="Cute Graphic"></div>
                 <h1>Just a few quick questions 🌸</h1>
                 <p class="subtitle">Help me plan the best date ever for you:</p>
                 
                 <div style="display: flex; flex-direction: column; gap: 12px; width: 100%; max-width: 320px; margin: 10px auto;">
-                    <input type="text" id="visitor-name" placeholder="Your cute name / nickname (Required) 🌸" style="padding: 12px 18px; border-radius: 20px; border: 2px solid #ffccd5; font-size: 0.95rem; outline: none; text-align: center; background: #fff5f7; color: #553f3f; font-family: 'Quicksand', sans-serif;">
+                    <input type="text" id="visitor-name" placeholder="Your cute name / nickname 🌸" style="padding: 12px 18px; border-radius: 20px; border: 2px solid #ffccd5; font-size: 0.95rem; outline: none; text-align: center; background: #fff5f7; color: #553f3f; font-family: 'Quicksand', sans-serif;">
                     
-                    <input type="text" id="visitor-coffee" placeholder="Favorite coffee or drink order (Optional) ☕" style="padding: 12px 18px; border-radius: 20px; border: 2px solid #ffccd5; font-size: 0.95rem; outline: none; text-align: center; background: #fff5f7; color: #553f3f; font-family: 'Quicksand', sans-serif;">
+                    <input type="text" id="visitor-coffee" placeholder="Favorite coffee or drink order ☕" style="padding: 12px 18px; border-radius: 20px; border: 2px solid #ffccd5; font-size: 0.95rem; outline: none; text-align: center; background: #fff5f7; color: #553f3f; font-family: 'Quicksand', sans-serif;">
                     
-                    <input type="text" id="visitor-craving" placeholder="Current favorite food craving (Optional) 🍜" style="padding: 12px 18px; border-radius: 20px; border: 2px solid #ffccd5; font-size: 0.95rem; outline: none; text-align: center; background: #fff5f7; color: #553f3f; font-family: 'Quicksand', sans-serif;">
+                    <input type="text" id="visitor-craving" placeholder="Current favorite food/snack craving 🍜" style="padding: 12px 18px; border-radius: 20px; border: 2px solid #ffccd5; font-size: 0.95rem; outline: none; text-align: center; background: #fff5f7; color: #553f3f; font-family: 'Quicksand', sans-serif;">
                 </div>
 
                 <button type="button" class="pink-btn" style="margin-top: 15px;" onclick="submitDetails()">Continue ✨</button>
@@ -131,7 +131,7 @@
                 </div>
             </div>
 
-            <!-- SCREEN 6: Queue Prank Screen (Static Payment Button + Error Box) -->
+            <!-- SCREEN 6: Queue Screen -->
             <div id="screen-6" class="screen">
                 <div class="graphic-header"><img src="bunny.png" alt="Cute Graphic"></div>
                 <h1>✨ You're officially on the list</h1>
@@ -148,14 +148,24 @@
                     </div>
                     <div class="queue-row"><span>6. Anonymous Admirer 🌹</span></div>
                 </div>
+                
+                <div class="btn-group queue-btns">
+                    <button type="button" class="pink-btn" onclick="nextScreen('6-error')">💸 Pay Premium to Skip Queue</button>
+                    <button type="button" class="pink-btn wait-btn" onclick="finishPrank()">⏳ Wait Patiently</button>
+                </div>
+            </div>
 
-                <div id="error-box" class="error-msg" style="display: none;">
+            <!-- SCREEN 6-ERROR: Dedicated Payment Error Tab -->
+            <div id="screen-6-error" class="screen">
+                <div class="graphic-header"><img src="bunny.png" alt="Cute Graphic"></div>
+                <h1>⚠️ Payment Attempt Blocked</h1>
+                
+                <div class="error-msg" style="display: block; margin: 20px 0;">
                     ❌ <strong>Payment Failed: Transaction Error 404</strong><br>
                     <span>Reason: Your money has no power here. Server overloaded with high-priority requests.</span>
                 </div>
-                
-                <div class="btn-group queue-btns" id="queue-action-btns">
-                    <button type="button" id="premium-btn" class="pink-btn premium-btn" onclick="triggerPaymentError()">💸 Pay Premium to Skip Queue</button>
+
+                <div class="btn-group queue-btns">
                     <button type="button" class="pink-btn wait-btn" onclick="finishPrank()">⏳ Wait Patiently</button>
                 </div>
             </div>
