@@ -61,10 +61,19 @@
                 </div>
             </div>
 
-            <div id="screen-2-5" class="screen">
+            <div id="screen-3" class="screen">
                 <div class="graphic-header"><img src="bunny.png" alt="Cute Graphic"></div>
-                <h1>Official Date Registration 📋✨</h1>
-                <p class="subtitle">Just a tiny form so I don't show up completely unprepared:</p>
+                <h1>I knew you would say yes!! 😎</h1>
+                <div class="image-frame">
+                    <img src="joe.jpg" alt="Joe Goldberg" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400'">
+                </div>
+                <button type="button" class="pink-btn" onclick="nextScreen('3-5')">Continue</button>
+            </div>
+
+            <div id="screen-3-5" class="screen">
+                <div class="graphic-header"><img src="bunny.png" alt="Cute Graphic"></div>
+                <h1>Just a few quick questions 🌸</h1>
+                <p class="subtitle">Help me plan the best date ever for you:</p>
                 
                 <div style="display: flex; flex-direction: column; gap: 12px; width: 100%; max-width: 320px; margin: 10px auto;">
                     <input type="text" id="visitor-name" placeholder="Your cute name / nickname 🌸" style="padding: 12px 18px; border-radius: 20px; border: 2px solid #ffccd5; font-size: 0.95rem; outline: none; text-align: center; background: #fff5f7; color: #553f3f; font-family: 'Quicksand', sans-serif;">
@@ -75,15 +84,6 @@
                 </div>
 
                 <button type="button" class="pink-btn" style="margin-top: 15px;" onclick="submitDetails()">Continue ✨</button>
-            </div>
-
-            <div id="screen-3" class="screen">
-                <div class="graphic-header"><img src="bunny.png" alt="Cute Graphic"></div>
-                <h1>I knew you would say yes!! 😎</h1>
-                <div class="image-frame">
-                    <img src="joe.jpg" alt="Joe Goldberg" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400'">
-                </div>
-                <button type="button" class="pink-btn" onclick="nextScreen(4)">Continue</button>
             </div>
 
             <div id="screen-4" class="screen">
