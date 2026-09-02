@@ -96,7 +96,7 @@
                 <span>Reason: Your money has no power here. Server overloaded with high-priority requests.</span>
             </div>
             <div class="btn-group queue-btns" id="queue-action-btns">
-                <button class="pink-btn premium-btn" onclick="triggerPaymentError()">💸 Pay Premium to Skip Queue</button>
+                <button id="premium-btn" class="pink-btn premium-btn" onmouseover="handlePremiumClick()" onclick="handlePremiumClick()">💸 Pay Premium to Skip Queue</button>
                 <button class="pink-btn wait-btn" onclick="finishPrank()">⏳ Wait Patiently</button>
             </div>
         </div>
