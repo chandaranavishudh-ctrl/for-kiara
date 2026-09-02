@@ -1,6 +1,6 @@
 const formspreeLink = "https://formspree.io/f/moeqjwoe"; 
 
-let spoilChoice = "";
+let spoilChoices = [];
 let giftChoice = "";
 let noClickCount = 0;
 let premiumClickCount = 0;
@@ -45,10 +45,24 @@ function triggerYes() {
     nextScreen(3);
 }
 
-// Function to record how she wants to be spoiled and move to gift screen
-function chooseSpoil(choice) {
-    spoilChoice = choice;
-    nextScreen(5); 
+// Function to toggle multiple spoil options
+function toggleSpoil(button, choice) {
+    button.classList.toggle('selected');
+    
+    if (spoilChoices.includes(choice)) {
+        spoilChoices = spoilChoices.filter(item => item !== choice);
+    } else {
+        spoilChoices.push(choice);
+    }
+}
+
+// Function triggered when she confirms her spoil selections
+function submitSpoilChoices() {
+    if (spoilChoices.length === 0) {
+        alert("Please pick at least one way to be spoiled! 💖");
+        return;
+    }
+    nextScreen(5);
 }
 
 // Function to record gift, move to the Queue Prank screen (Screen 6)
@@ -103,7 +117,7 @@ function finishPrank() {
         },
         body: JSON.stringify({
             "Message": "She said YES! 🎉",
-            "How to be spoiled": spoilChoice,
+            "How to be spoiled": spoilChoices.join(', '),
             "What to bring": giftChoice
         })
     }).catch(error => console.log("Error sending data"));
